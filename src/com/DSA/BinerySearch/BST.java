@@ -92,4 +92,6 @@ class BST
         while ((r != null) && !found)
         {
             int rval = r.getData();
+			if (val < rval)
+                r = r.getLeft();
 }
