@@ -96,4 +96,9 @@ class BST
                 r = r.getLeft();
 				else if (val > rval)
                 r = r.getRight();
+			else
+            {
+                found = true;
+                break;
+            }
 }
