@@ -22,5 +22,15 @@ class BST
     {
 	
     }
+	
+	public boolean delete(int k)
+    {
+	if (isEmpty())
+        {
+            System.out.println("Tree Empty");
+        	availability=false;
+        }
+	
+	}
      
 }
