@@ -94,4 +94,6 @@ class BST
             int rval = r.getData();
 			if (val < rval)
                 r = r.getLeft();
+				else if (val > rval)
+                r = r.getRight();
 }
