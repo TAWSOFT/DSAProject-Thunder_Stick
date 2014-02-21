@@ -85,5 +85,7 @@ class BST
         return root;
 	
 	}
+	
+	 private boolean search(BSTNode r, int val)
      
 }
