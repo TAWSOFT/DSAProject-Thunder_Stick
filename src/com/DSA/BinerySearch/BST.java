@@ -30,6 +30,20 @@ class BST
             System.out.println("Tree Empty");
         	availability=false;
         }
+		else if (search(k) == false)
+            System.out.println("Sorry "+ k +" is not present");
+        else
+        {
+            root = delete(root, k);
+            System.out.println(k+ " deleted from the tree");
+            availability=true;
+        }
+        
+        return availability;
+	
+	}
+	private BSTNode delete(BSTNode root, int k)
+    {
 	
 	}
      
