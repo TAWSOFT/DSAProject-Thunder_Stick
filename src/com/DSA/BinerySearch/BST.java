@@ -103,4 +103,6 @@ class BST
             }
 		found = search(r, val);
         }
+		return found;
+    }
 }
