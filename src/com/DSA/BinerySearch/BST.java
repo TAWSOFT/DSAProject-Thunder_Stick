@@ -101,4 +101,6 @@ class BST
                 found = true;
                 break;
             }
+		found = search(r, val);
+        }
 }
