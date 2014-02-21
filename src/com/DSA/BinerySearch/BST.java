@@ -44,6 +44,45 @@ class BST
 	}
 	private BSTNode delete(BSTNode root, int k)
     {
+	BSTNode p, p2, n;
+        if (root.getData() == k)
+        {
+            BSTNode lt, rt;
+            lt = root.getLeft();
+            rt = root.getRight();
+            if (lt == null && rt == null)
+                return null;
+            else if (lt == null)
+            {
+                p = rt;
+                return p;
+            }
+            else if (rt == null)
+            {
+                p = lt;
+                return p;
+            }
+            else
+            {
+                p2 = rt;
+                p = rt;
+                while (p.getLeft() != null)
+                    p = p.getLeft();
+                p.setLeft(lt);
+                return p2;
+            }
+        }
+        if (k < root.getData())
+        {
+            n = delete(root.getLeft(), k);
+            root.setLeft(n);
+        }
+        else
+        {
+            n = delete(root.getRight(), k);
+            root.setRight(n);             
+        }
+        return root;
 	
 	}
      
