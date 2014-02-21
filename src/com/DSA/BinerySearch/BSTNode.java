@@ -3,6 +3,7 @@ package com.DSA.BinerySearch;
 
 class BSTNode
 {
+	//Attributes
     BSTNode left, right;
     int ISBN;
     String Name;
