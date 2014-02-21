@@ -6,9 +6,21 @@ class BST
 	private BSTNode root;
     public BSTNode Tmproot;
     boolean availability;
+
+    public BST()
+    {
+        root = null;
+    }
+
+    public boolean isEmpty()
+    {
+        return root == null;
+    }
+    
 	
 	public void insert(int data,String name,String A_Name,String Sur,String Title)
     {
-	}
+	
+    }
      
 }
