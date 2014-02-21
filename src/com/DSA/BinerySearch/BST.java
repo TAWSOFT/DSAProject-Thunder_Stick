@@ -87,5 +87,9 @@ class BST
 	}
 	
 	 private boolean search(BSTNode r, int val)
-     
+     {
+		boolean found = false;
+        while ((r != null) && !found)
+        {
+            int rval = r.getData();
 }
