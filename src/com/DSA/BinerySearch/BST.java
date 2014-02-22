@@ -85,5 +85,24 @@ class BST
         return root;
 	
 	}
-     
+	
+	 private boolean search(BSTNode r, int val)
+     {
+		boolean found = false;
+        while ((r != null) && !found)
+        {
+            int rval = r.getData();
+			if (val < rval)
+                r = r.getLeft();
+				else if (val > rval)
+                r = r.getRight();
+			else
+            {
+                found = true;
+                break;
+            }
+		found = search(r, val);
+        }
+		return found;
+    }
 }
