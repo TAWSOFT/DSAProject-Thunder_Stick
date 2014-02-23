@@ -5,6 +5,7 @@ import javax.swing.JPanel;
 import java.awt.Color;
 import java.awt.Component;
 
+import javax.swing.ButtonGroup;
 import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
@@ -19,6 +20,11 @@ import javax.xml.ws.handler.MessageContext;
 import java.awt.Font;
 import java.awt.SystemColor;
 
+import javax.swing.JRadioButton;
+import javax.swing.JRadioButtonMenuItem;
+import java.awt.event.ItemListener;
+import java.awt.event.ItemEvent;
+
 
 
 public class GUIpanel extends JPanel {
@@ -31,22 +37,37 @@ public class GUIpanel extends JPanel {
 	JButton btnAdd;
 	JButton btnSearch;
 	
-
+	BST bst;
+	BSTNode Bnode,root;
 	private JTextField txtCount;
 	private JTextField txtISBNNoSearch;
 	private JTextField txtAname;
 	private JTextField txtSname;
 	private JTextField txtTitle;
 	
+	
+	String SortStucture;
+	ButtonGroup group;
+	JRadioButton rdbtnInOrder;
+	JRadioButton rdbtnPreOrder;
+	JRadioButton rdbtnPostOrder;
 	public GUIpanel() {
 		
-
+		
+        
+		bst = new BST();
+		Bnode=new BSTNode();
+		root=new BSTNode();
 		setPanel();
 	}
 	
 	private void setPanel(){
 	
 	
+		group = new ButtonGroup();
+		
+		setRadio();
+		
 		
 		setForeground(Color.GREEN);
 		setBackground(new Color(173, 255, 47));
@@ -59,7 +80,7 @@ public class GUIpanel extends JPanel {
 			
 			public void actionPerformed(ActionEvent e) {
 				
-				
+
 
 				
 			}
@@ -71,7 +92,7 @@ public class GUIpanel extends JPanel {
 		btnSearch.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				
-				
+
 				
 			}
 		});
@@ -81,32 +102,22 @@ public class GUIpanel extends JPanel {
 		JButton btnCount = new JButton("Count");
 		btnCount.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-			txtCount.setText(""+bst.countNodes());
-				
+			
+
+
 			}
 		});
 		btnCount.setBounds(390, 76, 86, 25);
 		add(btnCount);
 		
-		txtCount = new JTextField();
-		txtCount.setBounds(483, 79, 48, 19);
-		add(txtCount);
-		txtCount.setColumns(10);
-		
-		JLabel lblIsbnNo = new JLabel("ISBN No");
-		lblIsbnNo.setBounds(313, 200, 70, 15);
-		add(lblIsbnNo);
-		
-		txtISBNNoSearch = new JTextField();
-		txtISBNNoSearch.setBounds(379, 198, 114, 19);
-		add(txtISBNNoSearch);
-		txtISBNNoSearch.setColumns(10);
+		setLables();
 		
 		JButton btnNewButton = new JButton("Delete");
 		
 		btnNewButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				
+
 
 			}
 		});
@@ -135,7 +146,7 @@ public class GUIpanel extends JPanel {
 			}
 		});
 		btnClear.setBackground(UIManager.getColor("activeCaptionBorder"));
-		btnClear.setBounds(238, 318, 116, 47);
+		btnClear.setBounds(257, 350, 116, 47);
 		add(btnClear);
 		
 		
@@ -151,15 +162,60 @@ public class GUIpanel extends JPanel {
 				
 			}
 		});
-		btnSearchAll.setBounds(30, 262, 117, 25);
+		btnSearchAll.setBounds(30, 361, 117, 25);
 		add(btnSearchAll);
+
 		
 	}
 	
 	
-	
-	
-	
+
+	private void setLables() {
+		txtCount = new JTextField();
+		txtCount.setBounds(483, 79, 48, 19);
+		add(txtCount);
+		txtCount.setColumns(10);
+		
+		JLabel lblIsbnNo = new JLabel("ISBN No");
+		lblIsbnNo.setBounds(313, 200, 70, 15);
+		add(lblIsbnNo);
+		
+		txtISBNNoSearch = new JTextField();
+		txtISBNNoSearch.setBounds(379, 198, 114, 19);
+		add(txtISBNNoSearch);
+		txtISBNNoSearch.setColumns(10);
+		
+	}
+
+	private void setRadio() {
+		rdbtnInOrder = new JRadioButton("In Order");
+		rdbtnInOrder.setSelected(true);
+		rdbtnInOrder.setBackground(new Color(173, 255, 47));
+		rdbtnInOrder.setBounds(30, 268, 149, 23);
+		rdbtnInOrder.setActionCommand("InOrder");
+		add(rdbtnInOrder);
+
+		
+		rdbtnPreOrder = new JRadioButton("Pre Order");
+		rdbtnPreOrder.setBackground(new Color(173, 255, 47));
+		rdbtnPreOrder.setBounds(30, 295, 149, 23);
+		rdbtnPreOrder.setActionCommand("PreOrder");
+		add(rdbtnPreOrder);
+		
+		rdbtnPostOrder = new JRadioButton("Post Order");
+		rdbtnPostOrder.setBackground(new Color(173, 255, 47));
+		rdbtnPostOrder.setBounds(30, 322, 149, 23);
+		rdbtnPostOrder.setActionCommand("PostOrder");
+		add(rdbtnPostOrder);
+
+		
+		
+		group.add(rdbtnInOrder);
+		group.add(rdbtnPostOrder);
+		group.add(rdbtnPreOrder);
+		
+	}
+
 	private void designSpace() {
 		JLabel lblNewLabel_2 = new JLabel("Author Name");
 		lblNewLabel_2.setBounds(12, 125, 116, 15);
