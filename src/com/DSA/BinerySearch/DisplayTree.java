@@ -42,6 +42,22 @@ public class DisplayTree extends JFrame {
 			
 			}
 		}
+		else if(stucture=="PreOrder")
+        {
+        	if(root==null){System.out.println("Null tree");}
+	        else
+	        {
+
+			}
+		}
+		else
+        {
+	        if(root==null){System.out.println("Null tree");}
+	        else
+	        {
+
+			}
+		}
 
 
 	}
