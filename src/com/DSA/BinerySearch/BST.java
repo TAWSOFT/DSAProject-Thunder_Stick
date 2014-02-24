@@ -26,6 +26,13 @@ class BST
      {
      	if (node == null)
             node = new BSTNode(data,name,A_Name,A_Sur,Title);
+             else
+        {
+            if (data <= node.getData())
+                node.left = insert(node.left,data,name,A_Name,A_Sur,Title);
+            else
+                node.right = insert(node.right,data,name,A_Name,A_Sur,Title);
+        }
      	
      }
 	
