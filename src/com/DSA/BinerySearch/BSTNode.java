@@ -1,9 +1,7 @@
 package com.DSA.BinerySearch;
 
-
 class BSTNode
 {
-	//Attributes
     BSTNode left, right;
     int ISBN;
     String Name;
@@ -11,8 +9,9 @@ class BSTNode
     String Author_Name;
     String Author_Surname;
 
- public BSTNode()
-	{
+
+    public BSTNode()
+    {
         left = null;
         right = null;
         ISBN= 0;
@@ -21,7 +20,8 @@ class BSTNode
         Author_Name="";
         Author_Surname="";
     }
-	public BSTNode(int INo,String na,String n3,String n4,String n5)
+
+    public BSTNode(int INo,String na,String n3,String n4,String n5)
     {
         left = null;
         right = null;
@@ -32,8 +32,7 @@ class BSTNode
         Author_Surname=n4;
     }
 
-	//Setters and Getters of the Node
-	public void setLeft(BSTNode n)
+    public void setLeft(BSTNode n)
     {
         left = n;
     }
@@ -83,5 +82,4 @@ class BSTNode
     {
         return BType;
     }
-
 }

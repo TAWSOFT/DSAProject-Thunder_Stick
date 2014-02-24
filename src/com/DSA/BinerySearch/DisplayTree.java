@@ -21,8 +21,9 @@ public class DisplayTree extends JFrame {
 		this.setVisible(true);
 	}
 	public void setBST(BSTNode b,String stucture)
-      {
+	{
 		root=b;
+		
 		model = new DefaultTableModel(); 
         JTable table = new JTable(model); 
 
@@ -32,66 +33,75 @@ public class DisplayTree extends JFrame {
         model.addColumn("Book Type"); 
         model.addColumn("Author Name"); 
         model.addColumn("Author Surname"); 
-
-		if(stucture=="InOrder")
+        
+        if(stucture=="InOrder")
         {
         	if(root==null){System.out.println("Null tree");}
 	        else
 	        {
-				inorder(root);
-			}
-		}
-		else if(stucture=="PreOrder")
+	        
+	        	inorder(root);	
+	        }
+        }
+        else if(stucture=="PreOrder")
         {
         	if(root==null){System.out.println("Null tree");}
 	        else
 	        {
-				PreOrder(root);	
-			}
-		}
-		else
+	        
+	        	PreOrder(root);	
+	        }
+        }
+        else
         {
 	        if(root==null){System.out.println("Null tree");}
 	        else
 	        {
-				PostOrder(root);
-			}
-		}
+	        
+	        	PostOrder(root);	
+	        }
+        }
 
+        
+     
+        JScrollPane scrollPane = new JScrollPane(table);
+        getContentPane().add(scrollPane);
 	}
-        private void PostOrder(BSTNode r) {
-        	 if (r != null)
+	
+	private void PostOrder(BSTNode r) {
+		if (r != null)
         {
-            PostOrder(r.getLeft());             
-            PostOrder(r.getRight());
-            model.addRow(new Object[]{r.ISBN, r.Name,r.BType,r.Author_Name,r.Author_Surname});  
-            System.out.println("ISBN is:"+r.ISBN+", Book Name is:"+r.Name+", Author Name is"+r.Author_Name+", Book Type is:"+r.BType+", Author Surname          is:"+r.Author_Surname+"");
+			PostOrder(r.getLeft());             
+			PostOrder(r.getRight());
+			model.addRow(new Object[]{r.ISBN, r.Name,r.BType,r.Author_Name,r.Author_Surname});
+            System.out.println("ISBN is:"+r.ISBN+", Book Name is:"+r.Name+", Author Name is"+r.Author_Name+", Book Type is:"+r.BType+", Author Surname is:"+r.Author_Surname+"");
             
         }
 		
-		private void PreOrder(BSTNode r) {
-        if (r != null)
+	}
+	private void PreOrder(BSTNode r) {
+		if (r != null)
         {
-            model.addRow(new Object[]{r.ISBN, r.Name,r.BType,r.Author_Name,r.Author_Surname});
-            System.out.println("ISBN is:"+r.ISBN+", Book Name is:"+r.Name+", Author Name is"+r.Author_Name+", Book Type is:"+r.BType+", Author Surname 		 is:"+r.Author_Surname+"");
-            PreOrder(r.getLeft());            
+			model.addRow(new Object[]{r.ISBN, r.Name,r.BType,r.Author_Name,r.Author_Surname});
+            System.out.println("ISBN is:"+r.ISBN+", Book Name is:"+r.Name+", Author Name is"+r.Author_Name+", Book Type is:"+r.BType+", Author Surname is:"+r.Author_Surname+"");
+            
+            PreOrder(r.getLeft());             
             PreOrder(r.getRight());
         }
-          public void inorder(BSTNode r){
-       
-        if (r != null)
-        {  
+	}
+	public void inorder(BSTNode r)
+	{
+		if (r != null)
+        {
             inorder(r.getLeft());
             System.out.print(r.getData() +" ");
-           
+            
             model.addRow(new Object[]{r.ISBN, r.Name,r.BType,r.Author_Name,r.Author_Surname});
             System.out.println("ISBN is:"+r.ISBN+", Book Name is:"+r.Name+", Author Name is"+r.Author_Name+", Book Type is:"+r.BType+", Author Surname is:"+r.Author_Surname+"");
-           
+            
             inorder(r.getRight());
         }
-       
-    }
-    }
-        
-    }
-        }
+		
+	}
+	
+}

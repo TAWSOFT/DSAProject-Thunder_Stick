@@ -1,11 +1,13 @@
 package com.DSA.BinerySearch;
 
 
+
 class BST
 {
-	private BSTNode root;
+    private BSTNode root;
     public BSTNode Tmproot;
     boolean availability;
+    
 
     public BST()
     {
@@ -17,35 +19,39 @@ class BST
         return root == null;
     }
     
-	
-	public void insert(int data,String name,String A_Name,String Sur,String Title)
+    public BSTNode getRoot()
     {
-	root = insert(root, data,name,A_Name,Sur,Title);
+    	return root;
     }
-     private BSTNode insert(BSTNode node, int data,String name,String A_Name,String A_Sur,String Title)
-     {
-     	if (node == null)
+
+    public void insert(int data,String name,String A_Name,String Sur,String Title)
+    {
+        root = insert(root, data,name,A_Name,Sur,Title);
+    }
+
+    private BSTNode insert(BSTNode node, int data,String name,String A_Name,String A_Sur,String Title)
+    {
+        if (node == null)
             node = new BSTNode(data,name,A_Name,A_Sur,Title);
-             else
+        else
         {
             if (data <= node.getData())
                 node.left = insert(node.left,data,name,A_Name,A_Sur,Title);
             else
                 node.right = insert(node.right,data,name,A_Name,A_Sur,Title);
         }
-         return node;
-    
-     	
-     }
-	
-	public boolean delete(int k)
+        return node;
+    }
+
+    public boolean delete(int k)
     {
-	if (isEmpty())
+        if (isEmpty())
         {
             System.out.println("Tree Empty");
         	availability=false;
         }
-		else if (search(k) == false)
+        
+        else if (search(k) == false)
             System.out.println("Sorry "+ k +" is not present");
         else
         {
@@ -55,11 +61,10 @@ class BST
         }
         
         return availability;
-	
-	}
-	private BSTNode delete(BSTNode root, int k)
+    }
+    private BSTNode delete(BSTNode root, int k)
     {
-	BSTNode p, p2, n;
+        BSTNode p, p2, n;
         if (root.getData() == k)
         {
             BSTNode lt, rt;
@@ -98,26 +103,79 @@ class BST
             root.setRight(n);             
         }
         return root;
-	
-	}
-	
-	 private boolean search(BSTNode r, int val)
-     {
-		boolean found = false;
-        while ((r != null) && !found)
+    }
+
+    public int countNodes()
+    {
+        return countNodes(root);
+    }
+
+    private int countNodes(BSTNode r)
+    {
+        if (r == null)
+            return 0;
+        else
         {
-            int rval = r.getData();
-			if (val < rval)
-                r = r.getLeft();
-				else if (val > rval)
-                r = r.getRight();
-			else
+            int l = 1;
+            l += countNodes(r.getLeft());
+            l += countNodes(r.getRight());
+            return l;
+        }
+    }
+
+    public boolean search(int val)
+    {
+        return search(root, val);
+    }
+
+    private boolean search(BSTNode node, int ISBN)
+    {
+        boolean found = false;
+        while ((node != null) && !found)
+        {
+            int rtnval = node.getData();
+            if (ISBN < rtnval)
+            	node = node.getLeft();
+            else if (ISBN > rtnval)
+            	node = node.getRight();
+            else
             {
                 found = true;
                 break;
             }
-		found = search(r, val);
+            found = search(node, ISBN);
         }
-		return found;
+        return found;
     }
+    
+    public BSTNode getName(int isbn){
+    	try{
+    	
+    	if(Tmproot==null){Tmproot=root;}
+    	if(root==null){return null;}
+    	else
+    	{
+    		if(isbn==Tmproot.getData())
+    		{
+    			return Tmproot;
+    			
+    		}
+    		else if(Tmproot.getData() <= isbn)
+    		{
+    			Tmproot=Tmproot.getRight();
+    			
+    		}
+    		else {
+    			Tmproot=Tmproot.getLeft();
+			}
+    		getName(isbn);
+    		
+    	}
+    	}
+    	catch(Exception ex){}
+    	return Tmproot;
+    }
+    
+   
+   
 }
