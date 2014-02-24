@@ -20,6 +20,11 @@ public class DisplayTree extends JFrame {
 		this.setSize(550,150);
 		this.setVisible(true);
 	}
+	public void setBST(BSTNode b,String stucture)
+	{
+		root=b;
+
+	}
 
 
 
