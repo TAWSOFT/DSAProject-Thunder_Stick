@@ -25,7 +25,5 @@ public class DisplayTree extends JFrame {
 		root=b;
 
 	}
-
-
-
-}
+        private void PostOrder(BSTNode r) {
+        }
