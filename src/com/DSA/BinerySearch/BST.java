@@ -24,6 +24,8 @@ class BST
     }
      private BSTNode insert(BSTNode node, int data,String name,String A_Name,String A_Sur,String Title)
      {
+     	if (node == null)
+            node = new BSTNode(data,name,A_Name,A_Sur,Title);
      	
      }
 	
