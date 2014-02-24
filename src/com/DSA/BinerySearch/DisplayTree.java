@@ -21,7 +21,7 @@ public class DisplayTree extends JFrame {
 		this.setVisible(true);
 	}
 	public void setBST(BSTNode b,String stucture)
-	{
+      {
 		root=b;
 		model = new DefaultTableModel(); 
         JTable table = new JTable(model); 
@@ -77,6 +77,10 @@ public class DisplayTree extends JFrame {
             PreOrder(r.getLeft());            
             PreOrder(r.getRight());
         }
+          public void inorder(BSTNode r){
+       
+        if (r != null)
+        {  
     }
         
     }
