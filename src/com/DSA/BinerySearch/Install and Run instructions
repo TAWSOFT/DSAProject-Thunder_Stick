@@ -1,0 +1,4 @@
+javac src/com/DSA/BinerySearch/*.java
+
+java -cp ./src com.DSA.BinerySearch.MainClass
+
