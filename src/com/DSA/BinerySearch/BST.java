@@ -20,7 +20,7 @@ class BST
 	
 	public void insert(int data,String name,String A_Name,String Sur,String Title)
     {
-	
+	root = insert(root, data,name,A_Name,Sur,Title);
     }
 	
 	public boolean delete(int k)
