@@ -34,6 +34,14 @@ public class DisplayTree extends JFrame {
         model.addColumn("Author Name"); 
         model.addColumn("Author Surname"); 
 
+		if(stucture=="InOrder")
+        {
+        	if(root==null){System.out.println("Null tree");}
+	        else
+	        {
+			
+			}
+		}
 
 
 	}
