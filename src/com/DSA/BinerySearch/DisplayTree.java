@@ -24,6 +24,18 @@ public class DisplayTree extends JFrame {
 	{
 		root=b;
 
+		model = new DefaultTableModel(); 
+        JTable table = new JTable(model); 
+
+        // Create a couple of columns 
+        model.addColumn("ISBN No"); 
+        model.addColumn("Book Name"); 
+        model.addColumn("Book Type"); 
+        model.addColumn("Author Name"); 
+        model.addColumn("Author Surname"); 
+
+
+
 	}
 
 
