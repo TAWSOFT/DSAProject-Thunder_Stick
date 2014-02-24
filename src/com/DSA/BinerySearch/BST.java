@@ -22,6 +22,10 @@ class BST
     {
 	root = insert(root, data,name,A_Name,Sur,Title);
     }
+     private BSTNode insert(BSTNode node, int data,String name,String A_Name,String A_Sur,String Title)
+     {
+     	
+     }
 	
 	public boolean delete(int k)
     {
