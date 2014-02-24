@@ -33,6 +33,8 @@ class BST
             else
                 node.right = insert(node.right,data,name,A_Name,A_Sur,Title);
         }
+         return node;
+    
      	
      }
 	
