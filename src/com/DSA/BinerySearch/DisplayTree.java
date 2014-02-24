@@ -37,7 +37,5 @@ public class DisplayTree extends JFrame {
 
 
 	}
-
-
-
-}
+        private void PostOrder(BSTNode r) {
+        }
