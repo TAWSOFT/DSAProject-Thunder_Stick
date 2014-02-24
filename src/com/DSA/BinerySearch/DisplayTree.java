@@ -68,6 +68,16 @@ public class DisplayTree extends JFrame {
             System.out.println("ISBN is:"+r.ISBN+", Book Name is:"+r.Name+", Author Name is"+r.Author_Name+", Book Type is:"+r.BType+", Author Surname          is:"+r.Author_Surname+"");
             
         }
+		
+		private void PreOrder(BSTNode r) {
+        if (r != null)
+        {
+            model.addRow(new Object[]{r.ISBN, r.Name,r.BType,r.Author_Name,r.Author_Surname});
+            System.out.println("ISBN is:"+r.ISBN+", Book Name is:"+r.Name+", Author Name is"+r.Author_Name+", Book Type is:"+r.BType+", Author Surname is:"+r.Author_Surname+"");
+            PreOrder(r.getLeft());            
+            PreOrder(r.getRight());
+        }
+    }
         
     }
         }
