@@ -8,8 +8,7 @@ public class MainClass {
 		
 		
         System.out.println("Binary Search Tree Test\n");
-        
-        
+      
 	}
 
 }
