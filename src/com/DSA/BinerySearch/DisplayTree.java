@@ -81,6 +81,9 @@ public class DisplayTree extends JFrame {
        
         if (r != null)
         {  
+            inorder(r.getLeft());
+            System.out.print(r.getData() +" ");
+           
     }
         
     }
