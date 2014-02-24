@@ -24,6 +24,8 @@ import javax.swing.JRadioButton;
 import javax.swing.JRadioButtonMenuItem;
 import java.awt.event.ItemListener;
 import java.awt.event.ItemEvent;
+import javax.swing.GroupLayout;
+import javax.swing.GroupLayout.Alignment;
 
 
 
@@ -51,6 +53,14 @@ public class GUIpanel extends JPanel {
 	JRadioButton rdbtnInOrder;
 	JRadioButton rdbtnPreOrder;
 	JRadioButton rdbtnPostOrder;
+	private JLabel lblNewLabel;
+	private JLabel lblNewLabel_1;
+	private JLabel lblNewLabel_4;
+	private JLabel lblNewLabel_2;
+	private JLabel lblNewLabel_3;
+	private JLabel lblIsbnNo;
+	
+	
 	public GUIpanel() {
 		
 		
@@ -70,17 +80,29 @@ public class GUIpanel extends JPanel {
 		
 		
 		setForeground(Color.GREEN);
-		setBackground(new Color(173, 255, 47));
-		setLayout(null);
+		setBackground(UIManager.getColor("window"));
 		
 		btnAdd = new JButton("Add");
+		btnAdd.setBounds(30, 198, 61, 25);
 		btnAdd.setBackground(UIManager.getColor("Separator.foreground"));
 		btnAdd.addActionListener(new ActionListener() {
 			
 			
 			public void actionPerformed(ActionEvent e) {
 				
-
+				 try
+				 {
+			
+				bst.insert(Integer.parseInt(txtISBNNo.getText()),txtName.getText(),txtAname.getText(),txtSname.getText(),txtTitle.getText());
+				JOptionPane.showMessageDialog(null,"Item Added Successfully");
+				System.out.println("Item Added");
+				 }
+				 catch(Exception ex)
+				 {
+					 JOptionPane.showMessageDialog(null,"Item Failed to Add");
+					 System.out.println("Item Failed to Add");
+				 
+				 }
 
 				
 			}
@@ -89,49 +111,81 @@ public class GUIpanel extends JPanel {
 		setbtnDesigns();
 		
 		btnSearch = new JButton("Search");
+		btnSearch.setBounds(313, 229, 117, 25);
 		btnSearch.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				try{
+					
+					
+					Bnode=bst.getName(Integer.parseInt(txtISBNNoSearch.getText()));
+					
+					
+					String name=Bnode.getName();
+					String A_Name=Bnode.Author_Name();
+					String S_Name=Bnode.Author_Surname();
+					String BType=Bnode.BType();
+					
+					System.out.println(name);
+					txtName.setText(name);
+					txtISBNNo.setText(txtISBNNoSearch.getText());
+					txtAname.setText(A_Name);
+					txtSname.setText(S_Name);
+					txtTitle.setText(BType);
+				}
+				 catch(Exception ex)
+				 {
+					 JOptionPane.showMessageDialog(null,"No Item Found");
+					 System.out.println("No Item Found");
+					 
+				 }
 				
-
 				
 			}
 		});
-		btnSearch.setBounds(313, 229, 117, 25);
-		add(btnSearch);
 		
 		JButton btnCount = new JButton("Count");
+		btnCount.setBounds(390, 76, 86, 25);
 		btnCount.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-			
-
-
+			txtCount.setText(""+bst.countNodes());
+				
 			}
 		});
-		btnCount.setBounds(390, 76, 86, 25);
-		add(btnCount);
 		
 		setLables();
 		
 		JButton btnNewButton = new JButton("Delete");
+		btnNewButton.setBounds(436, 229, 117, 25);
 		
 		btnNewButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				try{
+					
 				
-
-
+				
+					if(bst.delete(Integer.parseInt(txtISBNNoSearch.getText())))
+					{
+						System.out.println("Item Deleted");
+						JOptionPane.showMessageDialog(null,"Item Deleted"); 
+					}
+					else
+					{
+						JOptionPane.showMessageDialog(null,"Tree Empty"); 
+					}
+				
+				}
+				 catch(Exception ex){}
 			}
 		});
-		btnNewButton.setBounds(436, 229, 117, 25);
-		add(btnNewButton);
 		
 		JLabel lblWellcomeTo = new JLabel("(: Wellcome to Our Binary Search Tree :)");
+		lblWellcomeTo.setBounds(166, 12, 327, 15);
 		lblWellcomeTo.setFont(new Font("Dialog", Font.BOLD, 14));
 		lblWellcomeTo.setBackground(Color.MAGENTA);
 		lblWellcomeTo.setForeground(new Color(255, 0, 0));
-		lblWellcomeTo.setBounds(85, 12, 327, 15);
-		add(lblWellcomeTo);
 		
 		JButton btnClear = new JButton("Clear");
+		btnClear.setBounds(257, 350, 116, 47);
 		btnClear.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 		
@@ -146,24 +200,53 @@ public class GUIpanel extends JPanel {
 			}
 		});
 		btnClear.setBackground(UIManager.getColor("activeCaptionBorder"));
-		btnClear.setBounds(257, 350, 116, 47);
-		add(btnClear);
 		
 		
 		
 		designSpace();
 		
 		JButton btnSearchAll = new JButton("Search All");
+		btnSearchAll.setBounds(30, 361, 117, 25);
 		btnSearchAll.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				
+				if(group.getSelection().getActionCommand()=="InOrder"){SortStucture="InOrder";}
+				else if(group.getSelection().getActionCommand()=="PreOrder"){SortStucture="PreOrder";}
+				else{SortStucture="PostOrder";}
 				
-
+				System.out.println(SortStucture);
+				
+				root=bst.getRoot();
+				DisplayTree ab=new DisplayTree();
+				
+				ab.setBST(root,SortStucture);
 				
 			}
 		});
-		btnSearchAll.setBounds(30, 361, 117, 25);
+		setLayout(null);
+		add(lblWellcomeTo);
+		add(lblNewLabel);
+		add(txtISBNNo);
+		add(lblNewLabel_1);
+		add(txtName);
+		add(btnCount);
+		add(txtCount);
+		add(lblNewLabel_4);
+		add(txtTitle);
+		add(lblNewLabel_2);
+		add(txtAname);
+		add(lblNewLabel_3);
+		add(txtSname);
+		add(btnAdd);
+		add(lblIsbnNo);
+		add(txtISBNNoSearch);
+		add(btnSearch);
+		add(btnNewButton);
+		add(rdbtnInOrder);
+		add(rdbtnPreOrder);
+		add(rdbtnPostOrder);
 		add(btnSearchAll);
+		add(btnClear);
 
 		
 	}
@@ -173,40 +256,34 @@ public class GUIpanel extends JPanel {
 	private void setLables() {
 		txtCount = new JTextField();
 		txtCount.setBounds(483, 79, 48, 19);
-		add(txtCount);
 		txtCount.setColumns(10);
 		
-		JLabel lblIsbnNo = new JLabel("ISBN No");
+		lblIsbnNo = new JLabel("ISBN No");
 		lblIsbnNo.setBounds(313, 200, 70, 15);
-		add(lblIsbnNo);
 		
 		txtISBNNoSearch = new JTextField();
 		txtISBNNoSearch.setBounds(379, 198, 114, 19);
-		add(txtISBNNoSearch);
 		txtISBNNoSearch.setColumns(10);
 		
 	}
 
 	private void setRadio() {
 		rdbtnInOrder = new JRadioButton("In Order");
-		rdbtnInOrder.setSelected(true);
-		rdbtnInOrder.setBackground(new Color(173, 255, 47));
 		rdbtnInOrder.setBounds(30, 268, 149, 23);
+		rdbtnInOrder.setSelected(true);
+		rdbtnInOrder.setBackground(UIManager.getColor("window"));
 		rdbtnInOrder.setActionCommand("InOrder");
-		add(rdbtnInOrder);
 
 		
 		rdbtnPreOrder = new JRadioButton("Pre Order");
-		rdbtnPreOrder.setBackground(new Color(173, 255, 47));
 		rdbtnPreOrder.setBounds(30, 295, 149, 23);
+		rdbtnPreOrder.setBackground(UIManager.getColor("window"));
 		rdbtnPreOrder.setActionCommand("PreOrder");
-		add(rdbtnPreOrder);
 		
 		rdbtnPostOrder = new JRadioButton("Post Order");
-		rdbtnPostOrder.setBackground(new Color(173, 255, 47));
 		rdbtnPostOrder.setBounds(30, 322, 149, 23);
+		rdbtnPostOrder.setBackground(UIManager.getColor("window"));
 		rdbtnPostOrder.setActionCommand("PostOrder");
-		add(rdbtnPostOrder);
 
 		
 		
@@ -217,55 +294,44 @@ public class GUIpanel extends JPanel {
 	}
 
 	private void designSpace() {
-		JLabel lblNewLabel_2 = new JLabel("Author Name");
+		lblNewLabel_2 = new JLabel("Author Name");
 		lblNewLabel_2.setBounds(12, 125, 116, 15);
-		add(lblNewLabel_2);
 		
 		txtAname = new JTextField();
 		txtAname.setBounds(130, 125, 114, 19);
-		add(txtAname);
 		txtAname.setColumns(10);
 		
-		JLabel lblNewLabel_3 = new JLabel("Author Surname");
+		lblNewLabel_3 = new JLabel("Author Surname");
 		lblNewLabel_3.setBounds(12, 152, 116, 15);
-		add(lblNewLabel_3);
 		
 		txtSname = new JTextField();
 		txtSname.setBounds(130, 152, 114, 19);
-		add(txtSname);
 		txtSname.setColumns(10);
 		
-		JLabel lblNewLabel_4 = new JLabel("Book Type");
+		lblNewLabel_4 = new JLabel("Book Type");
 		lblNewLabel_4.setBounds(12, 103, 116, 15);
-		add(lblNewLabel_4);
 		
 		txtTitle = new JTextField();
 		txtTitle.setBounds(130, 101, 114, 19);
-		add(txtTitle);
 		txtTitle.setColumns(10);
 		
 	}
 
 	private void setbtnDesigns(){
-		btnAdd.setBounds(30, 198, 61, 25);
-		add(btnAdd);
 		
-		JLabel lblNewLabel = new JLabel("ISBN No");
+		lblNewLabel = new JLabel("ISBN No");
 		lblNewLabel.setBounds(12, 49, 116, 15);
-		add(lblNewLabel);
 		
-		JLabel lblNewLabel_1 = new JLabel("Book Name");
+		lblNewLabel_1 = new JLabel("Book Name");
 		lblNewLabel_1.setBounds(12, 76, 116, 15);
-		add(lblNewLabel_1);
 		
 		txtISBNNo = new JTextField();
+		txtISBNNo.setToolTipText("");
 		txtISBNNo.setBounds(130, 49, 114, 19);
-		add(txtISBNNo);
 		txtISBNNo.setColumns(10);
 		
 		txtName = new JTextField();
 		txtName.setBounds(130, 76, 114, 19);
-		add(txtName);
 		txtName.setColumns(10);
 		
 		
