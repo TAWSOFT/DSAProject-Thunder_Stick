@@ -116,7 +116,7 @@ public class GUIpanel extends JPanel {
 			public void actionPerformed(ActionEvent e) {
 				try{
 					
-					
+					Bnode=null;
 					Bnode=bst.getName(Integer.parseInt(txtISBNNoSearch.getText()));
 					
 					
