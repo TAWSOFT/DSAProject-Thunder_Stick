@@ -8,6 +8,7 @@ class BST
     public BSTNode Tmproot;
     boolean availability;
     
+	boolean checkISBN;
 
     public BST()
     {
