@@ -25,9 +25,11 @@ class BST
     	return root;
     }
 
-    public void insert(int data,String name,String A_Name,String Sur,String Title)
+    public boolean insert(int data,String name,String A_Name,String Sur,String Title)
     {
+		checkISBN=false;
         root = insert(root, data,name,A_Name,Sur,Title);
+		return checkISBN;
     }
 
     private BSTNode insert(BSTNode node, int data,String name,String A_Name,String A_Sur,String Title)
@@ -38,8 +40,11 @@ class BST
         {
             if (data <= node.getData())
                 node.left = insert(node.left,data,name,A_Name,A_Sur,Title);
-            else
+            else if(data > node.getData())
                 node.right = insert(node.right,data,name,A_Name,A_Sur,Title);
+			else{
+            	System.out.println("You can't add a Book with the existing ISBN no");
+            	checkISBN=true;
         }
         return node;
     }
