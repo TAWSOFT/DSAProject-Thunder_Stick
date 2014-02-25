@@ -174,7 +174,7 @@ public class GUIpanel extends JPanel {
 					}
 					else
 					{
-						JOptionPane.showMessageDialog(null,"Tree Empty"); 
+						JOptionPane.showMessageDialog(null,"Item Not Deleted Item cannot Found"); 
 					}
 				
 				}
