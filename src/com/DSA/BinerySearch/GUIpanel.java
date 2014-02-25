@@ -89,14 +89,18 @@ public class GUIpanel extends JPanel {
 			
 			
 			public void actionPerformed(ActionEvent e) {
-				
-				 try
-				 {
-			
-				bst.insert(Integer.parseInt(txtISBNNo.getText()),txtName.getText(),txtAname.getText(),txtSname.getText(),txtTitle.getText());
-				JOptionPane.showMessageDialog(null,"Item Added Successfully");
-				System.out.println("Item Added");
-				 }
+				try {
+
+					if (bst.insert(Integer.parseInt(txtISBNNo.getText()),
+							txtName.getText(), txtAname.getText(),
+							txtSname.getText(), txtTitle.getText())) {
+						JOptionPane.showMessageDialog(null,
+								"Item Not Added Item Exists");
+					} else {
+						JOptionPane.showMessageDialog(null,
+								"Item Added Successfully");
+						System.out.println("Item Added");
+					}
 				 catch(Exception ex)
 				 {
 					 JOptionPane.showMessageDialog(null,"Item Failed to Add");
