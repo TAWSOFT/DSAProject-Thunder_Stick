@@ -2,33 +2,6 @@ package com.DSA.BinerySearch;
 
 import javax.swing.JPanel;
 
-import java.awt.Color;
-import java.awt.Component;
-
-import javax.swing.ButtonGroup;
-import javax.swing.JButton;
-import javax.swing.JLabel;
-import javax.swing.JOptionPane;
-import javax.swing.JTextField;
-
-import java.awt.event.ActionListener;
-import java.awt.event.ActionEvent;
-
-import javax.swing.UIManager;
-import javax.xml.ws.handler.MessageContext;
-
-import java.awt.Font;
-import java.awt.SystemColor;
-
-import javax.swing.JRadioButton;
-import javax.swing.JRadioButtonMenuItem;
-import java.awt.event.ItemListener;
-import java.awt.event.ItemEvent;
-import javax.swing.GroupLayout;
-import javax.swing.GroupLayout.Alignment;
-import javax.swing.JComboBox;
-import javax.swing.DefaultComboBoxModel;
-
 public class GUIpanel extends JPanel {
 
 	String[] columnNames = { "ISBN No", "Book Name", "Book Type",
@@ -84,27 +57,41 @@ public class GUIpanel extends JPanel {
 			public void actionPerformed(ActionEvent e) {
 
 				try {
-
-					if (bst.insert(Integer.parseInt(txtISBNNo.getText()),
-							txtName.getText(), txtAname.getText(),
-							txtSname.getText(), txtTitle.getText())) {
+					
+					if(validateTextboxes()){
+						System.out.println("Validation not Success");
 						JOptionPane.showMessageDialog(null,
-								"Item Not Added Item Exists");
-					} else {
-						JOptionPane.showMessageDialog(null,
-								"Item Added Successfully");
-						System.out.println("Item Added");
+								"Item Not Added");
 					}
+					else{
+					
+						if (bst.insert(Integer.parseInt(txtISBNNo.getText()),
+								txtName.getText(), txtAname.getText(),
+								txtSname.getText(), txtTitle.getText())) {
+							JOptionPane.showMessageDialog(null,
+									"Item Not Added Item Exists");
+						} else {
+							JOptionPane.showMessageDialog(null,
+									"Item Added Successfully");
+							System.out.println("Item Added");
+						}
+						
+				}
+				}
+				
+					
 
-				} catch (Exception ex) {
-					JOptionPane.showMessageDialog(null, "Item Failed to Add");
-					System.out.println("Item Failed to Add");
+				 catch (Exception ex) {
+					 System.out.println("Error");
+						JOptionPane.showMessageDialog(null,
+								"Item Not Added check ISBN");
 
 				}
 
 			}
 		});
 
+		
 		setbtnDesigns();
 
 		btnSearch = new JButton("Search");
@@ -245,10 +232,7 @@ public class GUIpanel extends JPanel {
 		JLabel lblNewLabel_5 = new JLabel("ISBN");
 		lblNewLabel_5.setBounds(369, 201, 61, 19);
 		add(lblNewLabel_5);
-		
-		lblAbout = new JLabel("About Us");
-		lblAbout.setBounds(526, 447, 70, 15);
-		add(lblAbout);
+
 
 	}
 
@@ -328,4 +312,21 @@ public class GUIpanel extends JPanel {
 		txtName.setColumns(10);
 
 	}
+	
+	public boolean validateTextboxes(){
+		
+		boolean error=false;
+		
+		if(txtAname.getText().isEmpty()){error=true;}
+		if(txtISBNNo.getText().isEmpty()){error=true;}
+		if(txtName.getText().isEmpty()){error=true;}
+		if(txtSname.getText().isEmpty()){error=true;}
+		if(txtTitle.getText().isEmpty()){error=true;}
+
+		return error;
+
+	}
+	
+	
+	
 }
