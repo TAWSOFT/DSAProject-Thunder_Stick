@@ -38,13 +38,14 @@ class BST
             node = new BSTNode(data,name,A_Name,A_Sur,Title);
         else
         {
-            if (data <= node.getData())
+            if (data < node.getData())
                 node.left = insert(node.left,data,name,A_Name,A_Sur,Title);
             else if(data > node.getData())
                 node.right = insert(node.right,data,name,A_Name,A_Sur,Title);
 			else{
             	System.out.println("You can't add a Book with the existing ISBN no");
             	checkISBN=true;
+			}
         }
         return node;
     }
@@ -57,8 +58,11 @@ class BST
         	availability=false;
         }
         
-        else if (search(k) == false)
+        else if (search(k) == false){
             System.out.println("Sorry "+ k +" is not present");
+            availability=false;
+        }
+        
         else
         {
             root = delete(root, k);
@@ -153,7 +157,7 @@ class BST
         }
         return found;
     }
-    
+ 
     public BSTNode getName(int isbn){
     	try{
     	
@@ -166,12 +170,12 @@ class BST
     			return Tmproot;
     			
     		}
-    		else if(Tmproot.getData() <= isbn)
+    		else if(Tmproot.getData() < isbn)
     		{
     			Tmproot=Tmproot.getRight();
     			
     		}
-    		else {
+    		else if (Tmproot.getData() > isbn){
     			Tmproot=Tmproot.getLeft();
 			}
     		getName(isbn);
