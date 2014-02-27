@@ -2,6 +2,35 @@ package com.DSA.BinerySearch;
 
 import javax.swing.JPanel;
 
+import java.awt.Color;
+import java.awt.Component;
+
+import javax.swing.ButtonGroup;
+import javax.swing.JButton;
+import javax.swing.JLabel;
+import javax.swing.JOptionPane;
+import javax.swing.JTextField;
+
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
+
+import javax.swing.UIManager;
+import javax.xml.ws.handler.MessageContext;
+
+import java.awt.Font;
+import java.awt.SystemColor;
+
+import javax.swing.JRadioButton;
+import javax.swing.JRadioButtonMenuItem;
+import java.awt.event.ItemListener;
+import java.awt.event.ItemEvent;
+import javax.swing.GroupLayout;
+import javax.swing.GroupLayout.Alignment;
+import javax.swing.JComboBox;
+import javax.swing.DefaultComboBoxModel;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
+
 public class GUIpanel extends JPanel {
 
 	String[] columnNames = { "ISBN No", "Book Name", "Book Type",
@@ -87,6 +116,8 @@ public class GUIpanel extends JPanel {
 								"Item Not Added check ISBN");
 
 				}
+				
+				ClearData();
 
 			}
 		});
@@ -169,14 +200,7 @@ public class GUIpanel extends JPanel {
 		btnClear.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 
-				txtCount.setText("");
-				txtISBNNo.setText("");
-				txtISBNNoSearch.setText("");
-				txtName.setText("");
-				txtAname.setText("");
-				txtSname.setText("");
-				txtTitle.setText("");
-
+				ClearData();
 			}
 		});
 		btnClear.setBackground(UIManager.getColor("activeCaptionBorder"));
@@ -230,7 +254,7 @@ public class GUIpanel extends JPanel {
 		add(btnClear);
 		
 		JLabel lblNewLabel_5 = new JLabel("ISBN");
-		lblNewLabel_5.setBounds(369, 201, 61, 19);
+		lblNewLabel_5.setBounds(360, 201, 61, 19);
 		add(lblNewLabel_5);
 
 
@@ -325,6 +349,17 @@ public class GUIpanel extends JPanel {
 
 		return error;
 
+	}
+	
+	public void ClearData(){
+		
+		txtCount.setText("");
+		txtISBNNo.setText("");
+		txtISBNNoSearch.setText("");
+		txtName.setText("");
+		txtAname.setText("");
+		txtSname.setText("");
+		txtTitle.setText("");
 	}
 	
 	
