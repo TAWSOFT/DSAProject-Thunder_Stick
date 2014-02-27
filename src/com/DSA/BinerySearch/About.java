@@ -114,7 +114,7 @@ public class About extends JFrame {
 		});
 		btnOpenTheApplication.setBounds(518, 470, 200, 67);
 		getContentPane().add(btnOpenTheApplication);
-		
+		this.setTitle("Welcome Page");
 		this.setSize(800,600);
 		this.setVisible(true);
 	}
