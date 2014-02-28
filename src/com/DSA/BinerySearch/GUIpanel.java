@@ -2,35 +2,6 @@ package com.DSA.BinerySearch;
 
 import javax.swing.JPanel;
 
-import java.awt.Color;
-import java.awt.Component;
-
-import javax.swing.ButtonGroup;
-import javax.swing.JButton;
-import javax.swing.JLabel;
-import javax.swing.JOptionPane;
-import javax.swing.JTextField;
-
-import java.awt.event.ActionListener;
-import java.awt.event.ActionEvent;
-
-import javax.swing.UIManager;
-import javax.xml.ws.handler.MessageContext;
-
-import java.awt.Font;
-import java.awt.SystemColor;
-
-import javax.swing.JRadioButton;
-import javax.swing.JRadioButtonMenuItem;
-import java.awt.event.ItemListener;
-import java.awt.event.ItemEvent;
-import javax.swing.GroupLayout;
-import javax.swing.GroupLayout.Alignment;
-import javax.swing.JComboBox;
-import javax.swing.DefaultComboBoxModel;
-import java.awt.event.MouseAdapter;
-import java.awt.event.MouseEvent;
-
 public class GUIpanel extends JPanel {
 
 	String[] columnNames = { "ISBN No", "Book Name", "Book Type",
@@ -40,6 +11,7 @@ public class GUIpanel extends JPanel {
 	private JTextField txtName;
 	JButton btnAdd;
 	JButton btnSearch;
+	JComboBox comboBox;
 
 	BST bst;
 	BSTNode Bnode, root;
@@ -86,14 +58,12 @@ public class GUIpanel extends JPanel {
 			public void actionPerformed(ActionEvent e) {
 
 				try {
-					
-					if(validateTextboxes()){
+
+					if (validateTextboxes()) {
 						System.out.println("Validation not Success");
-						JOptionPane.showMessageDialog(null,
-								"Item Not Added");
-					}
-					else{
-					
+						JOptionPane.showMessageDialog(null, "Item Not Added");
+					} else {
+
 						if (bst.insert(Integer.parseInt(txtISBNNo.getText()),
 								txtName.getText(), txtAname.getText(),
 								txtSname.getText(), txtTitle.getText())) {
@@ -104,25 +74,23 @@ public class GUIpanel extends JPanel {
 									"Item Added Successfully");
 							System.out.println("Item Added");
 						}
-						
-				}
-				}
-				
-					
 
-				 catch (Exception ex) {
-					 System.out.println("Error");
-						JOptionPane.showMessageDialog(null,
-								"Item Not Added check ISBN");
+					}
 
 				}
-				
+
+				catch (Exception ex) {
+					System.out.println("Error");
+					JOptionPane.showMessageDialog(null,
+							"Item Not Added check ISBN");
+
+				}
+
 				ClearData();
 
 			}
 		});
 
-		
 		setbtnDesigns();
 
 		btnSearch = new JButton("Search");
@@ -131,10 +99,35 @@ public class GUIpanel extends JPanel {
 			public void actionPerformed(ActionEvent e) {
 				try {
 
-					if(bst.search(Integer.parseInt(txtISBNNoSearch.getText()))){
-						Bnode = null;
-						Bnode = bst.getName(Integer.parseInt(txtISBNNoSearch.getText()));
+					if (comboBox.getSelectedItem().toString() == "ISBN") {
 
+						if (bst.search(Integer.parseInt(txtISBNNoSearch
+								.getText()))) {
+							Bnode = null;
+							Bnode = bst.getName(Integer
+									.parseInt(txtISBNNoSearch.getText()));
+
+							String name = Bnode.getName();
+							String A_Name = Bnode.Author_Name();
+							String S_Name = Bnode.Author_Surname();
+							String BType = Bnode.BType();
+
+							System.out.println(name);
+							txtName.setText(name);
+							txtISBNNo.setText(txtISBNNoSearch.getText());
+							txtAname.setText(A_Name);
+							txtSname.setText(S_Name);
+							txtTitle.setText(BType);
+						} else {
+							System.out.println("No Item Found");
+						}
+
+					} else {
+
+						Bnode = null;
+						if(bst.searchByName(txtISBNNoSearch.getText())){
+						Bnode = bst.getNameSearchByName(txtISBNNoSearch
+								.getText());
 						String name = Bnode.getName();
 						String A_Name = Bnode.Author_Name();
 						String S_Name = Bnode.Author_Surname();
@@ -142,13 +135,16 @@ public class GUIpanel extends JPanel {
 
 						System.out.println(name);
 						txtName.setText(name);
-						txtISBNNo.setText(txtISBNNoSearch.getText());
+						txtISBNNo.setText(Bnode.getData() + "");
 						txtAname.setText(A_Name);
 						txtSname.setText(S_Name);
 						txtTitle.setText(BType);
+						}
+						else {
+							System.out.println("No Item Found");
+						}
 					}
-					else{System.out.println("No Item Found");}
-					
+
 				} catch (Exception ex) {
 					JOptionPane.showMessageDialog(null, "No Item Found");
 					System.out.println("No Item Found");
@@ -174,13 +170,29 @@ public class GUIpanel extends JPanel {
 
 		btnNewButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				try {
 
-					if (bst.delete(Integer.parseInt(txtISBNNoSearch.getText()))) {
-						System.out.println("Item Deleted");
-						JOptionPane.showMessageDialog(null, "Item Deleted");
-					} else {
-						JOptionPane.showMessageDialog(null, "Item Not Deleted");
+				try {
+					if (comboBox.getSelectedItem().toString()
+							.contentEquals("ISBN")) {
+						if (bst.delete(Integer.parseInt(txtISBNNoSearch
+								.getText()))) {
+							System.out.println("Item Deleted");
+							JOptionPane.showMessageDialog(null, "Item Deleted");
+						} else {
+							JOptionPane.showMessageDialog(null,
+									"Item Not Deleted");
+						}
+					}
+					else{
+						if (bst.deleteByName(txtISBNNoSearch
+								.getText())) {
+							System.out.println("Item Deleted");
+							JOptionPane.showMessageDialog(null, "Item Deleted");
+						} else {
+							JOptionPane.showMessageDialog(null,
+									"Item Not Deleted");
+						}
+						
 					}
 
 				} catch (Exception ex) {
@@ -252,11 +264,12 @@ public class GUIpanel extends JPanel {
 		add(rdbtnPostOrder);
 		add(btnSearchAll);
 		add(btnClear);
-		
-		JLabel lblNewLabel_5 = new JLabel("ISBN");
-		lblNewLabel_5.setBounds(360, 201, 61, 19);
-		add(lblNewLabel_5);
 
+		comboBox = new JComboBox();
+		comboBox.setModel(new DefaultComboBoxModel(new String[] { "ISBN",
+				"Book Name" }));
+		comboBox.setBounds(313, 198, 119, 24);
+		add(comboBox);
 
 	}
 
@@ -336,23 +349,33 @@ public class GUIpanel extends JPanel {
 		txtName.setColumns(10);
 
 	}
-	
-	public boolean validateTextboxes(){
-		
-		boolean error=false;
-		
-		if(txtAname.getText().isEmpty()){error=true;}
-		if(txtISBNNo.getText().isEmpty()){error=true;}
-		if(txtName.getText().isEmpty()){error=true;}
-		if(txtSname.getText().isEmpty()){error=true;}
-		if(txtTitle.getText().isEmpty()){error=true;}
+
+	public boolean validateTextboxes() {
+
+		boolean error = false;
+
+		if (txtAname.getText().isEmpty()) {
+			error = true;
+		}
+		if (txtISBNNo.getText().isEmpty()) {
+			error = true;
+		}
+		if (txtName.getText().isEmpty()) {
+			error = true;
+		}
+		if (txtSname.getText().isEmpty()) {
+			error = true;
+		}
+		if (txtTitle.getText().isEmpty()) {
+			error = true;
+		}
 
 		return error;
 
 	}
-	
-	public void ClearData(){
-		
+
+	public void ClearData() {
+
 		txtCount.setText("");
 		txtISBNNo.setText("");
 		txtISBNNoSearch.setText("");
@@ -361,7 +384,4 @@ public class GUIpanel extends JPanel {
 		txtSname.setText("");
 		txtTitle.setText("");
 	}
-	
-	
-	
 }
