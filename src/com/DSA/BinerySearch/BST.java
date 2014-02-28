@@ -213,5 +213,13 @@ class BST
 
     
    // Delete By name
+   public boolean deleteByName(String  name) {
+		if (isEmpty()) {
+			System.out.println("Tree Empty");
+			availability = false;
+		}
+
+		
+	}
    
 }
