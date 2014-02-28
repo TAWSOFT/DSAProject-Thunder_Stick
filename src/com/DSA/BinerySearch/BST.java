@@ -232,5 +232,38 @@ class BST
 
 		
 	}
+	
+	private BSTNode deleteByName(BSTNode root, String name) {
+		BSTNode p, p2, n;
+		if (root.getName().contentEquals(name)) {
+			BSTNode lt, rt;
+			lt = root.getLeft();
+			rt = root.getRight();
+			if (lt == null && rt == null)
+				return null;
+			else if (lt == null) {
+				p = rt;
+				return p;
+			} else if (rt == null) {
+				p = lt;
+				return p;
+			} else {
+				p2 = rt;
+				p = rt;
+				while (p.getLeft() != null)
+					p = p.getLeft();
+				p.setLeft(lt);
+				return p2;
+			}
+		}
+		if (name.length() < root.getName().length()) {
+			n = deleteByName(root.getLeft(), name);
+			root.setLeft(n);
+		} else {
+			n = deleteByName(root.getRight(), name);
+			root.setRight(n);
+		}
+		return root;
+	}
    
 }
