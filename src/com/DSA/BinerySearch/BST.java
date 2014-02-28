@@ -265,5 +265,9 @@ class BST
 		}
 		return root;
 	}
+	public boolean searchByName(String name) {
+		
+		return searchByName(root, name);
+	}
    
 }
