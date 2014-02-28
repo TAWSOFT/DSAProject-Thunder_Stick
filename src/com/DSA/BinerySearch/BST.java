@@ -186,6 +186,11 @@ class BST
     	return Tmproot;
     }
     
+    public BSTNode getNameSearchByName(String name) {
+	
+	}
+
+    
    
    
 }
