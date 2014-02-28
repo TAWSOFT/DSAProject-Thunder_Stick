@@ -269,5 +269,21 @@ class BST
 		
 		return searchByName(root, name);
 	}
+	private boolean searchByName(BSTNode node, String name) {
+		boolean found = false;
+		while ((node != null) && !found) {
+			String rtnval = node.getName();
+			if (name.length() < rtnval.length())
+				node = node.getLeft();
+			else if (name.length() > rtnval.length())
+				node = node.getRight();
+			else {
+				found = true;
+				break;
+			}
+			found = searchByName(node, name);
+		}
+		return found;
+	}
    
 }
