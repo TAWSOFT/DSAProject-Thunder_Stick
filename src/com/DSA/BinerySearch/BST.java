@@ -187,6 +187,17 @@ class BST
     }
     
     public BSTNode getNameSearchByName(String name) {
+		try {
+
+			if (Tmproot == null) {
+				Tmproot = root;
+			}
+			
+		} catch (Exception ex) {
+		}
+		return Tmproot;
+	
+	
 	
 	}
 
