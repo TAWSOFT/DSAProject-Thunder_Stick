@@ -192,6 +192,20 @@ class BST
 			if (Tmproot == null) {
 				Tmproot = root;
 			}
+			String name1 = Tmproot.getName().toString();
+			if (root == null) {
+				return null;
+			} else {
+				if (name.contentEquals(name1)) {
+					return Tmproot;
+				} else if (Tmproot.getLeft() == null) {
+					Tmproot = Tmproot.getRight();
+				} else if (Tmproot.getLeft() != null) {
+					Tmproot = Tmproot.getLeft();
+				}
+			
+
+			}
 			
 		} catch (Exception ex) {
 		}
