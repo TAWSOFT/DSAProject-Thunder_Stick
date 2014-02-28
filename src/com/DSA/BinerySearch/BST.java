@@ -218,6 +218,10 @@ class BST
 			System.out.println("Tree Empty");
 			availability = false;
 		}
+		else if (searchByName(name) == false) {
+			System.out.println("Sorry " + name + " is not present");
+			availability = false;
+		}
 
 		
 	}
