@@ -222,6 +222,13 @@ class BST
 			System.out.println("Sorry " + name + " is not present");
 			availability = false;
 		}
+		else {
+			root = deleteByName(root, name);
+			System.out.println(name + " deleted from the tree");
+			availability = true;
+		}
+
+		return availability;
 
 		
 	}
