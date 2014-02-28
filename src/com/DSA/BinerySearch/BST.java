@@ -187,7 +187,7 @@ class BST
     }
     
     public BSTNode getNameSearchByName(String name) {
-		try {
+	try {
 
 			if (Tmproot == null) {
 				Tmproot = root;
@@ -203,16 +203,12 @@ class BST
 				} else if (Tmproot.getLeft() != null) {
 					Tmproot = Tmproot.getLeft();
 				}
-			
+				getNameSearchByName(name);
 
 			}
-			
 		} catch (Exception ex) {
 		}
 		return Tmproot;
-	
-	
-	
 	}
 
     
