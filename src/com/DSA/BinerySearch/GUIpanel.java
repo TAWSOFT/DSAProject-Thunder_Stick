@@ -77,15 +77,20 @@ public class GUIpanel extends JPanel {
 						JOptionPane.showMessageDialog(null, "Item Not Added");
 					} else {
 
-						if (bst.insert(Integer.parseInt(txtISBNNo.getText()),
-								txtName.getText(), txtAname.getText(),
-								txtSname.getText(), txtTitle.getText())) {
-							JOptionPane.showMessageDialog(null,
-									"Item Not Added Item Exists");
+						if (bst.searchByName(txtName.getText())) {
+							JOptionPane.showMessageDialog(null, "Item Exists with the Name "+txtName.getText());
 						} else {
-							JOptionPane.showMessageDialog(null,
-									"Item Added Successfully");
-							System.out.println("Item Added");
+							if (bst.insert(
+									Integer.parseInt(txtISBNNo.getText()),
+									txtName.getText(), txtAname.getText(),
+									txtSname.getText(), txtTitle.getText())) {
+								JOptionPane.showMessageDialog(null,
+										"Item Not Added Item Exists");
+							} else {
+								JOptionPane.showMessageDialog(null,
+										"Item Added Successfully");
+								System.out.println("Item Added");
+							}
 						}
 
 					}
