@@ -77,23 +77,19 @@ public class GUIpanel extends JPanel {
 						JOptionPane.showMessageDialog(null, "Item Not Added");
 					} else {
 
-						
-							if (bst.insert(
-									Integer.parseInt(txtISBNNo.getText()),
-									txtName.getText(), txtAname.getText(),
-									txtSname.getText(), txtTitle.getText())) {
-								JOptionPane.showMessageDialog(null,
-										"Item Not Added Item Exists");
-							} else {
-								JOptionPane.showMessageDialog(null,
-										"Item Added Successfully");
-								System.out.println("Item Added");
-							}
+						if (bst.insert(Integer.parseInt(txtISBNNo.getText()),
+								txtName.getText(), txtAname.getText(),
+								txtSname.getText(), txtTitle.getText())) {
+							JOptionPane.showMessageDialog(null,
+									"Item Not Added Item Exists");
+						} else {
+							JOptionPane.showMessageDialog(null,
+									"Item Added Successfully");
+							System.out.println("Item Added");
 						}
-
 					}
 
-				
+				}
 
 				catch (Exception ex) {
 					System.out.println("Error");
@@ -187,25 +183,35 @@ public class GUIpanel extends JPanel {
 			public void actionPerformed(ActionEvent e) {
 
 				try {
-					if (comboBox.getSelectedItem().toString()
-							.contentEquals("ISBN")) {
-						if (bst.delete(Integer.parseInt(txtISBNNoSearch
-								.getText()))) {
-							System.out.println("Item Deleted");
-							JOptionPane.showMessageDialog(null, "Item Deleted");
-						} else {
-							JOptionPane.showMessageDialog(null,
-									"Item Not Deleted");
-						}
-					} else {
-						if (bst.deleteByName(txtISBNNoSearch.getText())) {
-							System.out.println("Item Deleted");
-							JOptionPane.showMessageDialog(null, "Item Deleted");
-						} else {
-							JOptionPane.showMessageDialog(null,
-									"Item Not Deleted");
-						}
+					int dialogButton=JOptionPane.showConfirmDialog(null, "Are you sure",
+							"Warning",JOptionPane.YES_NO_OPTION);
 
+					
+					
+					if (dialogButton == JOptionPane.YES_OPTION) {
+						System.out.println(dialogButton);
+						if (comboBox.getSelectedItem().toString()
+								.contentEquals("ISBN")) {
+							if (bst.delete(Integer.parseInt(txtISBNNoSearch
+									.getText()))) {
+								System.out.println("Item Deleted");
+								JOptionPane.showMessageDialog(null,
+										"Item Deleted");
+							} else {
+								JOptionPane.showMessageDialog(null,
+										"Item Not Deleted");
+							}
+						} else {
+							if (bst.deleteByName(txtISBNNoSearch.getText())) {
+								System.out.println("Item Deleted");
+								JOptionPane.showMessageDialog(null,
+										"Item Deleted");
+							} else {
+								JOptionPane.showMessageDialog(null,
+										"Item Not Deleted");
+							}
+
+						}
 					}
 
 				} catch (Exception ex) {
