@@ -1,19 +1,6 @@
 package com.DSA.BinerySearch;
 
 import javax.swing.JPanel;
-import java.awt.Color;
-import javax.swing.ButtonGroup;
-import javax.swing.JButton;
-import javax.swing.JLabel;
-import javax.swing.JOptionPane;
-import javax.swing.JTextField;
-import java.awt.event.ActionListener;
-import java.awt.event.ActionEvent;
-import javax.swing.UIManager;
-import java.awt.Font;
-import javax.swing.JRadioButton;
-import javax.swing.JComboBox;
-import javax.swing.DefaultComboBoxModel;
 
 public class GUIpanel extends JPanel {
 
@@ -77,9 +64,7 @@ public class GUIpanel extends JPanel {
 						JOptionPane.showMessageDialog(null, "Item Not Added");
 					} else {
 
-						if (bst.searchByName(txtName.getText())) {
-							JOptionPane.showMessageDialog(null, "Item Exists with the Name "+txtName.getText());
-						} else {
+						
 							if (bst.insert(
 									Integer.parseInt(txtISBNNo.getText()),
 									txtName.getText(), txtAname.getText(),
@@ -95,7 +80,7 @@ public class GUIpanel extends JPanel {
 
 					}
 
-				}
+				
 
 				catch (Exception ex) {
 					System.out.println("Error");
@@ -143,22 +128,21 @@ public class GUIpanel extends JPanel {
 					} else {
 
 						Bnode = null;
-						if(bst.searchByName(txtISBNNoSearch.getText())){
-						Bnode = bst.getNameSearchByName(txtISBNNoSearch
-								.getText());
-						String name = Bnode.getName();
-						String A_Name = Bnode.Author_Name();
-						String S_Name = Bnode.Author_Surname();
-						String BType = Bnode.BType();
+						if (bst.searchByName(txtISBNNoSearch.getText())) {
+							Bnode = bst.getNameSearchByName(txtISBNNoSearch
+									.getText());
+							String name = Bnode.getName();
+							String A_Name = Bnode.Author_Name();
+							String S_Name = Bnode.Author_Surname();
+							String BType = Bnode.BType();
 
-						System.out.println(name);
-						txtName.setText(name);
-						txtISBNNo.setText(Bnode.getData() + "");
-						txtAname.setText(A_Name);
-						txtSname.setText(S_Name);
-						txtTitle.setText(BType);
-						}
-						else {
+							System.out.println(name);
+							txtName.setText(name);
+							txtISBNNo.setText(Bnode.getData() + "");
+							txtAname.setText(A_Name);
+							txtSname.setText(S_Name);
+							txtTitle.setText(BType);
+						} else {
 							System.out.println("No Item Found");
 						}
 					}
@@ -200,17 +184,15 @@ public class GUIpanel extends JPanel {
 							JOptionPane.showMessageDialog(null,
 									"Item Not Deleted");
 						}
-					}
-					else{
-						if (bst.deleteByName(txtISBNNoSearch
-								.getText())) {
+					} else {
+						if (bst.deleteByName(txtISBNNoSearch.getText())) {
 							System.out.println("Item Deleted");
 							JOptionPane.showMessageDialog(null, "Item Deleted");
 						} else {
 							JOptionPane.showMessageDialog(null,
 									"Item Not Deleted");
 						}
-						
+
 					}
 
 				} catch (Exception ex) {
