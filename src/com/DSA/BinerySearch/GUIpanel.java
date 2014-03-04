@@ -385,3 +385,4 @@ public class GUIpanel extends JPanel {
 		txtTitle.setText("");
 	}
 }
+
